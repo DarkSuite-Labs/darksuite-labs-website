@@ -1,4 +1,4 @@
-import { Github } from 'lucide-react';
+import { Instagram, Twitter, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const scrollToSection = (id: string) => {
