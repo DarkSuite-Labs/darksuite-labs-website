@@ -5,10 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/hooks/use-toast';
 
 const Contact = () => {
-  const { toast } = useToast();
+  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     name: '',
     workEmail: '',
@@ -20,12 +20,19 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form is non-functional for now, just show feedback
-    toast({
-      title: 'Message received',
-      description: 'Thank you for your interest. We\'ll get back to you soon.',
-    });
-    setFormData({ name: '', workEmail: '', companyName: '', roleTitle: '', interestedIn: '', message: '' });
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.workEmail.trim()) newErrors.workEmail = 'Work email is required';
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.workEmail.trim())) newErrors.workEmail = 'Enter a valid email';
+    if (!formData.companyName.trim()) newErrors.companyName = 'Company name is required';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setSubmitted(true);
   };
 
   return (
