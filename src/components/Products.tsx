@@ -46,7 +46,7 @@ const Products = () => {
           className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Regulex OS</h2>
-          <p className="text-muted-foreground text-lg">Enterprise compliance management for consultancy firms</p>
+          <p className="text-muted-foreground text-lg">Compliance infrastructure for regulated firms. Built to survive audits.</p>
         </motion.div>
 
         {/* Tier Cards Grid */}
