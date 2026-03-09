@@ -1,4 +1,4 @@
-import { Github } from 'lucide-react';
+import { Instagram, Twitter, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   const scrollToSection = (id: string) => {
@@ -41,16 +41,39 @@ const Footer = () => {
             </button>
           </div>
 
-          {/* Right: GitHub */}
-          <a
-            href="https://github.com/DarkSuite-Labs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="GitHub"
-          >
-            <Github className="h-5 w-5" />
-          </a>
+          {/* Right: Social Icons */}
+          <div className="flex items-center gap-4">
+            {/* TODO: Replace with Instagram URL */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            {/* TODO: Replace with X/Twitter URL */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="X (Twitter)"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+            {/* TODO: Replace with LinkedIn URL */}
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="LinkedIn"
+            >
+              <Linkedin className="h-5 w-5" />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

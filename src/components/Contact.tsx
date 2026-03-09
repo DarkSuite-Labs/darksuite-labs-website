@@ -108,6 +108,7 @@ const Contact = () => {
         >
           <p className="text-muted-foreground">
             Or reach us directly —{' '}
+            {/* TODO: Replace with actual email when ready */}
             <a
               href="mailto:contact@darksuitelabs.com"
               className="text-accent hover:text-accent/80 transition-colors"
