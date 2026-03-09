@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -10,7 +11,10 @@ const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    workEmail: '',
+    companyName: '',
+    roleTitle: '',
+    interestedIn: '',
     message: '',
   });
 
@@ -21,7 +25,7 @@ const Contact = () => {
       title: 'Message received',
       description: 'Thank you for your interest. We\'ll get back to you soon.',
     });
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', workEmail: '', companyName: '', roleTitle: '', interestedIn: '', message: '' });
   };
 
   return (
@@ -55,7 +59,7 @@ const Contact = () => {
             <Input
               id="name"
               type="text"
-              placeholder="Your name"
+              placeholder="Your full name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
@@ -64,23 +68,67 @@ const Contact = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="workEmail">Work Email</Label>
             <Input
-              id="email"
+              id="workEmail"
               type="email"
-              placeholder="your@email.com"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              placeholder="you@company.com"
+              value={formData.workEmail}
+              onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
               required
               className="bg-muted border-border"
             />
           </div>
 
           <div className="space-y-2">
+            <Label htmlFor="companyName">Company Name</Label>
+            <Input
+              id="companyName"
+              type="text"
+              placeholder="Your company or firm name"
+              value={formData.companyName}
+              onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+              required
+              className="bg-muted border-border"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="roleTitle">Role / Title</Label>
+            <Input
+              id="roleTitle"
+              type="text"
+              placeholder="e.g. Chief Compliance Officer, Head of Risk"
+              value={formData.roleTitle}
+              onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
+              required
+              className="bg-muted border-border"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="interestedIn">Interested In</Label>
+            <Select
+              value={formData.interestedIn}
+              onValueChange={(value) => setFormData({ ...formData, interestedIn: value })}
+              required
+            >
+              <SelectTrigger className="bg-muted border-border">
+                <SelectValue placeholder="Select a tier" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="foundation">Foundation</SelectItem>
+                <SelectItem value="governance">Governance</SelectItem>
+                <SelectItem value="not-sure">Not sure yet</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
             <Label htmlFor="message">Message</Label>
             <Textarea
               id="message"
-              placeholder="Tell us about your project or enquiry..."
+              placeholder="Tell us about your compliance setup or what you're looking to solve"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               required
