@@ -25,7 +25,7 @@ const Contact = () => {
       title: 'Message received',
       description: 'Thank you for your interest. We\'ll get back to you soon.',
     });
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', workEmail: '', companyName: '', roleTitle: '', interestedIn: '', message: '' });
   };
 
   return (
