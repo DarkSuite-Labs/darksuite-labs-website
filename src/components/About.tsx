@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   const stats = [
-    { number: '01', label: 'Products in development' },
+    { number: '01', label: 'Products launched' },
     { number: '1', label: 'Founder' },
     { number: '0', label: 'Shortcuts taken' },
   ];
