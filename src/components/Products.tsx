@@ -20,7 +20,7 @@ const Products = () => {
         </motion.div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="max-w-md mx-auto">
           {/* Regulex OS - Active Product */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -28,14 +28,11 @@ const Products = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <Card className="card-glow bg-card border-border h-full group cursor-pointer">
+            <Card className="card-glow bg-card border-border h-full">
               <CardHeader>
-                <div className="flex items-start justify-between mb-3">
+                <div className="mb-3">
                   <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20">
-                    Compliance Management
-                  </Badge>
-                  <Badge variant="secondary" className="bg-muted text-muted-foreground">
-                    In Development
+                    Enterprise SaaS
                   </Badge>
                 </div>
                 <CardTitle className="text-2xl mb-2">Regulex OS</CardTitle>
@@ -44,49 +41,10 @@ const Products = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <button className="text-accent hover:text-accent/80 transition-colors flex items-center gap-2 group">
-                  <span>Learn More</span>
-                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </button>
+                <Badge variant="outline" className="bg-accent/10 text-accent border-accent/20">
+                  Available Now
+                </Badge>
               </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Coming Soon Product 1 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Card className="bg-card border-border border-dashed h-full opacity-60">
-              <CardHeader>
-                <div className="flex items-center justify-center h-full min-h-[200px]">
-                  <div className="text-center">
-                    <Badge variant="outline" className="mb-4">Coming Soon</Badge>
-                    <p className="text-muted-foreground">Next-generation tool</p>
-                  </div>
-                </div>
-              </CardHeader>
-            </Card>
-          </motion.div>
-
-          {/* Coming Soon Product 2 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <Card className="bg-card border-border border-dashed h-full opacity-60">
-              <CardHeader>
-                <div className="flex items-center justify-center h-full min-h-[200px]">
-                  <div className="text-center">
-                    <Badge variant="outline" className="mb-4">Coming Soon</Badge>
-                    <p className="text-muted-foreground">Enterprise infrastructure</p>
-                  </div>
-                </div>
-              </CardHeader>
             </Card>
           </motion.div>
         </div>
