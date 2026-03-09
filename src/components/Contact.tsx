@@ -179,13 +179,19 @@ const Contact = () => {
               />
             </div>
 
-            <Button
-              type="submit"
-              size="lg"
-              className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            >
-              Send Message
-            </Button>
+            <div className="space-y-2 pt-2">
+              <Button
+                type="submit"
+                size="lg"
+                disabled={isSubmitting}
+                className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </Button>
+              {submitError && (
+                <p className="text-sm text-destructive text-center mt-2 font-medium">{submitError}</p>
+              )}
+            </div>
           </motion.form>
         )}
 
