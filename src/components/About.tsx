@@ -24,7 +24,7 @@ const About = () => {
           className="max-w-3xl mx-auto"
         >
           <p className="text-lg leading-relaxed text-muted-foreground text-center">
-            DarkSuite Labs is an independent software company incorporated in Wyoming, USA, and operating out of Hyderabad, India. We build enterprise-grade SaaS tools for compliance, operations, and business infrastructure. Every product we ship is designed to be the best in its category — not good enough, but exceptional.
+            DarkSuite Labs is an independent software company based in Wyoming, USA, and operating out of Hyderabad, India. We build enterprise-grade SaaS tools for compliance, operations, and business infrastructure. Every product we ship is designed to be the best in its category — not good enough, but exceptional.
           </p>
         </motion.div>
       </div>
