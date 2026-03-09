@@ -61,7 +61,7 @@ const Footer = () => {
               className="text-muted-foreground hover:text-foreground transition-colors"
               aria-label="X (Twitter)"
             >
-              <Twitter className="h-5 w-5" />
+              <span className="h-5 w-5 flex items-center justify-center font-bold text-sm">X</span>
             </a>
             {/* TODO: Replace with LinkedIn URL */}
             <a
