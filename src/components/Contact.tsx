@@ -52,106 +52,115 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        {/* Contact Form */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          onSubmit={handleSubmit}
-          className="space-y-6"
-        >
-          <div className="space-y-2">
-            <Label htmlFor="name">Name</Label>
-            <Input
-              id="name"
-              type="text"
-              placeholder="Your full name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              required
-              className="bg-muted border-border"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="workEmail">Work Email</Label>
-            <Input
-              id="workEmail"
-              type="email"
-              placeholder="you@company.com"
-              value={formData.workEmail}
-              onChange={(e) => setFormData({ ...formData, workEmail: e.target.value })}
-              required
-              className="bg-muted border-border"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="companyName">Company Name</Label>
-            <Input
-              id="companyName"
-              type="text"
-              placeholder="Your company or firm name"
-              value={formData.companyName}
-              onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-              required
-              className="bg-muted border-border"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="roleTitle">Role / Title</Label>
-            <Input
-              id="roleTitle"
-              type="text"
-              placeholder="e.g. Chief Compliance Officer, Head of Risk"
-              value={formData.roleTitle}
-              onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
-              required
-              className="bg-muted border-border"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="interestedIn">Interested In</Label>
-            <Select
-              value={formData.interestedIn}
-              onValueChange={(value) => setFormData({ ...formData, interestedIn: value })}
-              required
-            >
-              <SelectTrigger className="bg-muted border-border">
-                <SelectValue placeholder="Select a tier" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="foundation">Foundation</SelectItem>
-                <SelectItem value="governance">Governance</SelectItem>
-                <SelectItem value="not-sure">Not sure yet</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="message">Message</Label>
-            <Textarea
-              id="message"
-              placeholder="Tell us about your compliance setup or what you're looking to solve"
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              required
-              rows={6}
-              className="bg-muted border-border resize-none"
-            />
-          </div>
-
-          <Button
-            type="submit"
-            size="lg"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+        {submitted ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center py-20"
           >
-            Send Message
-          </Button>
-        </motion.form>
+            <p className="text-xl text-foreground">
+              Thank you. We'll be in touch within 1 business day.
+            </p>
+          </motion.div>
+        ) : (
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Your full name"
+                value={formData.name}
+                onChange={(e) => { setFormData({ ...formData, name: e.target.value }); setErrors((prev) => ({ ...prev, name: '' })); }}
+                className="bg-muted border-border"
+              />
+              {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="workEmail">Work Email</Label>
+              <Input
+                id="workEmail"
+                type="email"
+                placeholder="you@company.com"
+                value={formData.workEmail}
+                onChange={(e) => { setFormData({ ...formData, workEmail: e.target.value }); setErrors((prev) => ({ ...prev, workEmail: '' })); }}
+                className="bg-muted border-border"
+              />
+              {errors.workEmail && <p className="text-sm text-destructive">{errors.workEmail}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="companyName">Company Name</Label>
+              <Input
+                id="companyName"
+                type="text"
+                placeholder="Your company or firm name"
+                value={formData.companyName}
+                onChange={(e) => { setFormData({ ...formData, companyName: e.target.value }); setErrors((prev) => ({ ...prev, companyName: '' })); }}
+                className="bg-muted border-border"
+              />
+              {errors.companyName && <p className="text-sm text-destructive">{errors.companyName}</p>}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="roleTitle">Role / Title</Label>
+              <Input
+                id="roleTitle"
+                type="text"
+                placeholder="e.g. Chief Compliance Officer, Head of Risk"
+                value={formData.roleTitle}
+                onChange={(e) => setFormData({ ...formData, roleTitle: e.target.value })}
+                className="bg-muted border-border"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="interestedIn">Interested In</Label>
+              <Select
+                value={formData.interestedIn}
+                onValueChange={(value) => setFormData({ ...formData, interestedIn: value })}
+              >
+                <SelectTrigger className="bg-muted border-border">
+                  <SelectValue placeholder="Select a tier" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="foundation">Foundation</SelectItem>
+                  <SelectItem value="governance">Governance</SelectItem>
+                  <SelectItem value="not-sure">Not sure yet</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="message">Message</Label>
+              <Textarea
+                id="message"
+                placeholder="Tell us about your compliance setup or what you're looking to solve"
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                rows={6}
+                className="bg-muted border-border resize-none"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              size="lg"
+              className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            >
+              Send Message
+            </Button>
+          </motion.form>
+        )}
 
         {/* Direct Contact */}
         <motion.div
