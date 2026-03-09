@@ -5,9 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { supabase } from '@/integrations/supabase/client';
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     name: '',
@@ -18,7 +21,7 @@ const Contact = () => {
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: Record<string, string> = {};
 
@@ -32,7 +35,31 @@ const Contact = () => {
       return;
     }
 
-    setSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: formData.name,
+            work_email: formData.workEmail,
+            company_name: formData.companyName,
+            role_title: formData.roleTitle,
+            interested_in: formData.interestedIn,
+            message: formData.message,
+          }
+        ]);
+
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setSubmitError('Something went wrong. Please email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
