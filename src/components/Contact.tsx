@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { supabase } from '@/integrations/supabase/client';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -39,20 +39,21 @@ const Contact = () => {
     setSubmitError('');
 
     try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([
-          {
-            name: formData.name,
-            work_email: formData.workEmail,
-            company_name: formData.companyName,
-            role_title: formData.roleTitle,
-            interested_in: formData.interestedIn,
-            message: formData.message,
-          }
-        ]);
+      await emailjs.send(
+        'service_jt7486q',
+        'REPLACE_WITH_TEMPLATE_ID',
+        {
+          name: formData.name,
+          workEmail: formData.workEmail,
+          companyName: formData.companyName,
+          roleTitle: formData.roleTitle,
+          interestedIn: formData.interestedIn,
+          message: formData.message,
+          time: new Date().toISOString()
+        },
+        'REPLACE_WITH_PUBLIC_KEY'
+      );
 
-      if (error) throw error;
       setSubmitted(true);
     } catch (err) {
       console.error('Error submitting form:', err);
