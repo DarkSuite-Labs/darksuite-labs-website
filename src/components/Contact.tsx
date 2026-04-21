@@ -41,7 +41,7 @@ const Contact = () => {
     try {
       await emailjs.send(
         'service_jt7486q',
-        'REPLACE_WITH_TEMPLATE_ID',
+        'template_ox4e8ln',
         {
           name: formData.name,
           workEmail: formData.workEmail,
@@ -51,7 +51,7 @@ const Contact = () => {
           message: formData.message,
           time: new Date().toISOString()
         },
-        'REPLACE_WITH_PUBLIC_KEY'
+        'AUPVAQ_SDvGDiFgal'
       );
 
       setSubmitted(true);
@@ -208,10 +208,10 @@ const Contact = () => {
             Or reach us directly —{' '}
             {/* TODO: Replace with actual email when ready */}
             <a
-              href="mailto:contact@darksuitelabs.com"
+              href="mailto:contact@darksuitelabs.dev"
               className="text-accent hover:text-accent/80 transition-colors"
             >
-              contact@darksuitelabs.com
+              contact@darksuitelabs.dev
             </a>
           </p>
         </motion.div>
